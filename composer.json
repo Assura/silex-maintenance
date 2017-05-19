@@ -1,0 +1,19 @@
+{
+	"name" : "assura/silex-maintenance",
+	"description" : "Maintenance page",
+	"keywords" : ["Silex", "Maintenance"],
+	"type" : "library",
+	"authors" : [
+		{
+			"name" : "Thomas LEFETZ"
+		}
+	],
+	"autoload": {
+		"psr-4" : { 
+			"Assura\\Silex\\Maintenance\\": "src/"
+		}
+	},
+    "require": {
+        "silex/silex": "~2.0"
+    }
+}

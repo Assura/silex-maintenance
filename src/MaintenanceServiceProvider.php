@@ -10,6 +10,10 @@ class MaintenanceServiceProvider implements ServiceProviderInterface
 {
 	public function register(Container $app)
 	{
+		if (!isset($app['maintenance.content'])) {
+			$app['maintenance.content'] = 'Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment.';
+		}
+
 		$app->before(function () use($app){
 			if (!isset($app['maintenance.enabled'])) {
 				return;
@@ -20,8 +24,6 @@ class MaintenanceServiceProvider implements ServiceProviderInterface
 			if (!is_bool($maintenanceEnabled)) {
 				throw new Exception("Identifier 'maintenance.enabled' must return boolean.");
 			}
-
-			$app['maintenance.content'] = (isset($app['maintenance.content']) ? $app['maintenance.content'] : 'Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment.');
 
 			if ($maintenanceEnabled) {
 				return new Response($app['maintenance.content']);
